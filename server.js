@@ -4,16 +4,19 @@ var bodyParser = require("body-parser")
 require("dotenv").config()
 const app = express()
 const mongoose = require("mongoose")
-const port = process.env.PORT || 8000
+const port = 8000
 const router = require("./router/routes")
 
 app.use(express.json())
 
 mongoose
-  .connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://Sanjeev:Sanju266@cluster0.erlocnt.mongodb.net/FullStack?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("Connected to MongoDB")
   })
