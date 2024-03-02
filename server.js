@@ -11,7 +11,7 @@ app.use(express.json())
 
 mongoose
   .connect(
-    "mongodb+srv://Sanjeev:Sanju266@cluster0.erlocnt.mongodb.net/FullStack?retryWrites=true&w=majority",
+    "mongodb+srv://abhinavpatna55:abhinavpatna55@lms.uh6brsm.mongodb.net/frontendworkshop",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

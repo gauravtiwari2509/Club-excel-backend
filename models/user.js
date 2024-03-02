@@ -1,25 +1,39 @@
 const mongoose = require("mongoose")
 
-const userSchema = new mongoose.Schema({
+const registration = new mongoose.Schema({
   name: {
     type: String,
+    required: true,
   },
   email: {
     type: String,
+    required: true,
   },
   contact: {
+    type: Number,
+    required: true,
+  },
+  roll: {
+    type: Number,
+    required: true,
+  },
+
+  batch: {
     type: String,
   },
-  roll: String,
-  why: String,
-  batch: String,
-  hackerrankid: String,
-  area: String,
-  gender: String,
-  skill: String,
-  branch: String,
+
+  gender: {
+    type: String,
+    required: true,
+  },
+  skill: {
+    type: String,
+  },
+  branch: {
+    type: String,
+  },
 })
 
-const User = mongoose.model("Userregd", userSchema)
+const User = mongoose.model("Userreg", registration)
 
 module.exports = User
