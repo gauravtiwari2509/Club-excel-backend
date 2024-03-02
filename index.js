@@ -4,7 +4,7 @@ var bodyParser = require("body-parser")
 require("dotenv").config()
 const app = express()
 const mongoose = require("mongoose")
-const port = 8000
+const port = process.env.PORT || 8000
 const router = require("./router/routes")
 
 app.use(express.json())
@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use("/api", router)
 app.get("/", (req, res) => {
-  res.send("Hello World!")
+  res.send("Success")
 })
 
 app.listen(port, () => {
