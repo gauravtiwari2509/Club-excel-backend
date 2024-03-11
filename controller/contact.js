@@ -4,7 +4,6 @@ const emailValidator = (value) => {
   const regex = /^[a-zA-Z0-9._-]+@nist\.edu$/
   return regex.test(value)
 }
-
 module.exports.contactUs = async (req, res, next) => {
   try {
     const { fname, lname, email, phone, subject, message } = req.body

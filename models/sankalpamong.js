@@ -1,21 +1,23 @@
 const mongoose = require("mongoose")
 
-const registration = new mongoose.Schema({
+const amongUs = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    require: true,
   },
   email: {
     type: String,
     required: true,
   },
+  collegeemail: {
+    type: String,
+  },
   contact: {
-    type: Number,
+    type: String,
     required: true,
   },
   roll: {
-    type: Number,
-    required: true,
+    type: String,
   },
 
   batch: {
@@ -26,17 +28,19 @@ const registration = new mongoose.Schema({
     type: String,
     required: true,
   },
-  skill: {
-    type: String,
-  },
   branch: {
     type: String,
   },
-  area: {
+  isNistian: {
+    type: String,
+  },
+  isLocalite: {
+    type: String,
+  },
+  otherCollege: {
     type: String,
   },
 })
 
-const User = mongoose.model("Userreg", registration)
-
-module.exports = User
+const AmongUs = mongoose.model("Amongus", amongUs)
+module.exports = AmongUs

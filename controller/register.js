@@ -15,12 +15,11 @@ module.exports.register = async (req, res, next) => {
       // why,
       batch,
       // hackerrankid,
-      // area,
+      area,
       gender,
       skill,
       branch,
     } = req.body
-    console.log(req.body)
 
     if (
       !name ||
@@ -39,6 +38,10 @@ module.exports.register = async (req, res, next) => {
     if (!emailValidator(email)) {
       return res.status(400).json({ error: "Invalid NIST email address" })
     }
+    const existingUser = await User.findOne({ email: email || collegeemail })
+    if (existingUser) {
+      return res.status(400).json({ error: "Email is already registered" })
+    }
 
     const newUser = new User({
       name,
@@ -48,7 +51,7 @@ module.exports.register = async (req, res, next) => {
       // why,
       batch,
       // hackerrankid,
-      // area,
+      area,
       gender,
       skill,
       branch,
