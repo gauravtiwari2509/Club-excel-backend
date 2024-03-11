@@ -24,7 +24,9 @@ module.exports.codeCrushed = async (req, res, next) => {
         .status(400)
         .json({ error: "All required fields must be provide" })
     }
-    const existingUser = await AmongUs.findOne({ email: email || collegeemail })
+    const existingUser = await CodeCrushed.findOne({
+      email: email || collegeemail,
+    })
     if (existingUser) {
       return res.status(400).json({ error: "Email is already registered" })
     }
