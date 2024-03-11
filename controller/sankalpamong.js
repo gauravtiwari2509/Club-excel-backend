@@ -11,8 +11,9 @@ module.exports.amongUs = async (req, res, next) => {
       batch,
       gender,
       branch,
-      college,
-      area,
+      otherCollege,
+      isNistian,
+      isLocalite,
     } = req.body
 
     if (!name || !collegeemail || !contact || !batch || !gender || !branch) {
@@ -35,8 +36,9 @@ module.exports.amongUs = async (req, res, next) => {
       batch,
       gender,
       branch,
-      college,
-      area,
+      otherCollege,
+      isNistian,
+      isLocalite,
     })
 
     await newReg.save()
