@@ -5,56 +5,52 @@ const emailValidator = (value) => {
   const regex = /^[a-zA-Z0-9._-]+@nist\.edu$/
   return regex.test(value)
 }
+
 module.exports.register = async (req, res, next) => {
   try {
     const {
       name,
-      email,
-      contact,
-      roll,
-      // why,
-      batch,
-      // hackerrankid,
-      area,
+      rollNo,
+      regNo,
+      nistEmail,
+      personalEmail,
       gender,
-      skill,
       branch,
+      hackerrankId,
+      techStacks,
+      mobile,
+      hostelLocal,
+      reason,
     } = req.body
 
-    if (
-      !name ||
-      !email ||
-      !contact ||
-      !roll ||
-      // !why ||
-      // !hackerrankid ||
-      !gender
-    ) {
+    if (!name || !rollNo || !nistEmail || !gender || !mobile) {
       return res
         .status(400)
         .json({ error: "All required fields must be provided" })
     }
 
-    if (!emailValidator(email)) {
+    if (!emailValidator(nistEmail)) {
       return res.status(400).json({ error: "Invalid NIST email address" })
     }
-    const existingUser = await User.findOne({ email: email || collegeemail })
+
+    const existingUser = await User.findOne({ nistEmail })
     if (existingUser) {
       return res.status(400).json({ error: "Email is already registered" })
     }
 
     const newUser = new User({
       name,
-      email,
-      contact,
-      roll,
-      // why,
-      batch,
-      // hackerrankid,
-      area,
+      rollNo,
+      regNo,
+      nistEmail,
+      personalEmail,
       gender,
-      skill,
       branch,
+      hackerrankId,
+      techStacks,
+      mobile,
+      hostelLocal,
+      reason,
     })
 
     await newUser.save()
@@ -78,10 +74,9 @@ module.exports.getRegisterUser = async (req, res, next) => {
 
 module.exports.getUser = async (req, res, next) => {
   try {
-    const { value } = req.params
-
+    const { rollNo } = req.params
     const user = await User.findOne({
-      $or: [{ roll: value }, { contact: value }],
+      rollNo,
     })
 
     if (user) {
@@ -95,35 +90,35 @@ module.exports.getUser = async (req, res, next) => {
   }
 }
 
-module.exports.contactUs = async (req, res, next) => {
-  try {
-    const { fname, lname, email, phone, subject, message } = req.body
-    console.log(req.body)
-    if (!emailValidator(email)) {
-      return res.status(400).json({ error: "Invalid NIST email address" })
-    }
-    const newContact = new ContactUs({
-      fname,
-      lname,
-      email,
-      phone,
-      subject,
-      message,
-    })
-    await newContact.save()
-    res.status(201).json({ message: "Contact form submitted successfully" })
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ error: "Internal Server Error" })
-  }
-}
+// module.exports.contactUs = async (req, res, next) => {
+//   try {
+//     const { fname, lname, email, phone, subject, message } = req.body
+//     console.log(req.body)
+//     if (!emailValidator(email)) {
+//       return res.status(400).json({ error: "Invalid NIST email address" })
+//     }
+//     const newContact = new ContactUs({
+//       fname,
+//       lname,
+//       email,
+//       phone,
+//       subject,
+//       message,
+//     })
+//     await newContact.save()
+//     res.status(201).json({ message: "Contact form submitted successfully" })
+//   } catch (error) {
+//     console.error(error)
+//     res.status(500).json({ error: "Internal Server Error" })
+//   }
+// }
 
-module.exports.getAllContact = async (req, res, next) => {
-  try {
-    const allContactSubmissions = await ContactUs.find()
-    res.status(200).json(allContactSubmissions)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ error: "Internal Server Error" })
-  }
-}
+// module.exports.getAllContact = async (req, res, next) => {
+//   try {
+//     const allContactSubmissions = await ContactUs.find()
+//     res.status(200).json(allContactSubmissions)
+//   } catch (error) {
+//     console.error(error)
+//     res.status(500).json({ error: "Internal Server Error" })
+//   }
+// }

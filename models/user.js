@@ -1,42 +1,49 @@
 const mongoose = require("mongoose")
 
-const registration = new mongoose.Schema({
+const registrationSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  email: {
-    type: String,
+  rollNo: {
+    type: String, // Changed from Number to String to match the form data type
     required: true,
   },
-  contact: {
-    type: Number,
+  regNo: {
+    type: String, // Assuming regNo corresponds to a registration number
+  },
+  nistEmail: {
+    type: String, // Changed from email to nistEmail to match the form field
     required: true,
   },
-  roll: {
-    type: Number,
-    required: true,
-  },
-
-  batch: {
+  personalEmail: {
     type: String,
   },
-
   gender: {
     type: String,
     required: true,
   },
-  skill: {
-    type: String,
-  },
   branch: {
     type: String,
   },
-  area: {
+  hackerrankId: {
+    type: String,
+  },
+  techStacks: {
+    type: String,
+  },
+  mobile: {
+    type: String,
+    required: true,
+  },
+  hostelLocal: {
+    type: String,
+  },
+  reason: {
     type: String,
   },
 })
 
-const User = mongoose.model("Userreg", registration)
+const User = mongoose.model("Userreg", registrationSchema)
 
 module.exports = User
