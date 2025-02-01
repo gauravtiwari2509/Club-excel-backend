@@ -11,7 +11,7 @@ app.use(express.json())
 
 mongoose
   .connect(
-    "mongodb+srv://abhinavpatna55:abhinavpatna55@lms.uh6brsm.mongodb.net/selection",
+    "mongodb+srv://abhinavpatna55:abhinavpatna55@lms.uh6brsm.mongodb.net/githubworkshop",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
